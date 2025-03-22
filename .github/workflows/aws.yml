@@ -20,8 +20,8 @@ jobs:
 
     - name: Copy html to EC2
       run: |
-        scp -o StrictHostKeyChecking=no index.html ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu 
+        scp -o StrictHostKeyChecking=no index.html ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }} 
 
     - name: Move html
       run: |
-        sudo mv /home/ubuntu/index.html /var/www/html/index.html
+        sudo mv /home/${{ secrets.EC2_USER }}/index.html /var/www/html/index.html
