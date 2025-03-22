@@ -101,7 +101,7 @@
   </div>
 
   <script>
-    const apiUrl = "https://7105.api.greenapi.com";
+    const apiUrl = ${{ secrets.API_URL }};
 
     function getInput(id) {
       return document.getElementById(id).value.trim();
