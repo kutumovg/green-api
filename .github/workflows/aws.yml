@@ -28,4 +28,4 @@ jobs:
 
     - name: Move html
       run: |
-        sudo mv /home/ubuntu/index.html /var/www/html/index.html
+        ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "sudo mv /home/ubuntu/index.html /var/www/html/index.html"
