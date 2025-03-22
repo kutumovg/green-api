@@ -18,10 +18,14 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.EC2_KEY }}
 
+    - name: Replace placeholders with secrets
+      run: |
+        sed -i "s|{{API_URL}}|${{ secrets.API_URL }}|g" index.html
+
     - name: Copy html to EC2
       run: |
-        scp -o StrictHostKeyChecking=no index.html ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }} 
+        scp -o StrictHostKeyChecking=no index.html ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu
 
     - name: Move html
       run: |
-        sudo mv /home/${{ secrets.EC2_USER }}/index.html /var/www/html/index.html
+        sudo mv /home/ubuntu/index.html /var/www/html/index.html
